@@ -23,7 +23,7 @@ var rotasUsuarios = []Rota{
 	},
 
 	{
-		URI:                "/usuarios",
+		URI:                "/usuarios/{usuarioID}",
 		Metodo:             http.MethodGet,
 		Funcao:             controllers.BuscarUsuario,
 		RequerAutenticacao: false,
