@@ -33,3 +33,12 @@ CREATE TABLE administrador(
     chave       varchar(30) not null,
     dataCriacao timestamp default current_timestamp,
 );
+
+DROP TABLE IF EXISTS ingredients;
+
+CREATE TABLE ingredients(
+    id_ingredients      serial primary key,
+    nome                varchar(50) not null unique,
+    description         varchar(30) not null,
+    dataCriacao    timestamp default current_timestamp,
+);
