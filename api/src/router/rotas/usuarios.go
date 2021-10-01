@@ -1,7 +1,7 @@
 package rotas
 
 import (
-	"api/src/controllers"
+	"../../controllers"
 
 	"net/http"
 )
@@ -23,7 +23,7 @@ var rotasUsuarios = []Rota{
 	},
 
 	{
-		URI:                "/usuarios",
+		URI:                "/usuarios/{usuarioID}",
 		Metodo:             http.MethodGet,
 		Funcao:             controllers.BuscarUsuario,
 		RequerAutenticacao: false,
