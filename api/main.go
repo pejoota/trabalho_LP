@@ -1,13 +1,14 @@
 package main
 
 import (
-	"./src/router"
+	"api/src/router"
 	"fmt"
 	"log"
 	"net/http"
 )
 
 func main() {
+
 	fmt.Println("Rodando API")
 
 	router := router.Gerar()
