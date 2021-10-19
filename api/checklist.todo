@@ -1,0 +1,8 @@
+#Regras para testes e lista de tarefas
+
+# alt + D -> Done
+# alt + S -> Started
+# alt + Enter -> Gerar topico
+
+Regras:
+    ☐ Verificar TRELLO sobre padrão de commits
