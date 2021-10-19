@@ -14,6 +14,8 @@ type Usuario struct {
 
 type Cliente struct {
 	Usuario
+	Altura         uint8 `json:"altura,omitempty"`
+	Idade          uint8 `json:"idade,omitempty"`
 	Peso           uint8 `json:"peso,omitempty"`
 	PercGordura    uint8 `json:"percGordura,omitempty"`
 	PercMassaMagra uint8 `json:"percMassaMagra,omitempty"`
