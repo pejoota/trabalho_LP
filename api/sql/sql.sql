@@ -46,3 +46,14 @@ CREATE TABLE ingredients(
     description         varchar(180) not null,
     dataCriacao    timestamp default current_timestamp,
 );
+
+DROP TABLE IF EXISTS receitas;
+
+CREATE TABLE receitas(
+    id_receita  serial primary key,
+    nome        varchar(50) not null unique,
+    descrição   varchar(50) not null,
+    id_ingredients integer not null,
+    dataCriacao timestamp default current_timestamp,
+    foreign key (id_ingredients) references ingredients (id_ingredients)
+);
