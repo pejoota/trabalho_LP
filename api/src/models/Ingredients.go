@@ -6,6 +6,6 @@ import "time"
 type Ingredient struct {
 	ID          uint64    `json:"id,omitempty"`
 	Nome        string    `json:"nome,omitempty"`
-	Description string    `json:"nescription,omitempty"`
+	Description string    `json:"description,omitempty"`
 	DataCriacao time.Time `json:"datacriacao,omitempty"`
 }
