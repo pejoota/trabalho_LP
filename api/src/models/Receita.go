@@ -6,7 +6,6 @@ import "time"
 type Receita struct {
 	Id_receita  uint64  	`json:"id,omitempty"`
 	Nome        string  	`json:"nome,omitempty"`
-	Descricao 	string		`json:"description,omitempty"`
-	Id_Ingredient []uint64	`json:"ingredient,omitempty`
+	Descricao 	string		`json:"descricao,omitempty"`
 	DataCriacao time.Time	`json:"datacriacao,omitempty"`
 }

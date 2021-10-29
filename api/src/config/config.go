@@ -21,7 +21,6 @@ var err error
 
 func Conectar() (*sql.DB, error) {
 
-	fmt.Printf("Accessing %s ... ", DbName)
 	db, err = sql.Open(PostgresDriver, DataSourceName)
 
 	if err != nil {
@@ -32,8 +31,6 @@ func Conectar() (*sql.DB, error) {
 		db.Close()
 		return nil, err
 	}
-
-	fmt.Println("Connected!")
 
 	return db, nil
 }

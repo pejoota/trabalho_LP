@@ -1,13 +1,13 @@
 package controllers
 
 import (
+	"net/http"
 	"api/src/config"
 	"api/src/models"
 	"api/src/repositorios"
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"net/http"
 )
 
 //Insere cardápio no db
@@ -32,6 +32,7 @@ func CriarCardapio(w http.ResponseWriter, r *http.Request) {
 
 	repositorio := repositorios.NovoRepositorioUsuarios(db)
 	repositorio.Criar(cliente)
+	w.Write([]byte("Buscando todos os cardápios!"))
 }
 
 //Busca todos os cardápio salvos no db

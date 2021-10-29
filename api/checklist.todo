@@ -6,3 +6,10 @@
 
 Regras:
     ☐ Verificar TRELLO sobre padrão de commits
+
+Receitas:
+    ✔ Criar tabela bd @started(21-10-19 21:27) @done(21-10-19 21:28) @lasted(1m8s)
+    ☐ Criar relação externa com ingrediente @started(21-10-19 21:28)
+    ☐ Criar models
+    ☐ Criar controllers
+    ✔ Criar rotas @done(21-10-20 14:05)
