@@ -21,6 +21,12 @@ var rotasIngredients = []Rota{
 		Funcao:             controllers.GetAllIngredients,
 		RequerAutenticacao: false,
 	},
+	{
+		URI:                "/ingredients/ids",
+		Metodo:             http.MethodGet,
+		Funcao:             controllers.GetAllIngredientsIds,
+		RequerAutenticacao: false,
+	},
 
 	{
 		URI:                "/ingredients/{ingredients_id}",
