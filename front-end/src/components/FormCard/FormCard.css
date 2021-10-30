@@ -1,0 +1,130 @@
+.card-box {
+  font-family: 'Roboto Slab';
+  margin: 1rem;
+  border-radius: 8px;
+  border: 1px solid #C3C3C3;
+  box-shadow: 0 2px 7px 0 rgba(0,0,0, 0.15);
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  position: relative;
+  background-color: rgb(239, 239, 241);
+}
+
+.card-box__title {
+  font-size: 20px;
+  color: #2C3E50;
+  max-width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+.card-box__info {
+  font-size: 16px;
+  margin:auto;
+  max-width: 30%;
+}
+
+.card-box__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-box__footer2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-box__link{
+  margin-right: 5px;
+  border: 1px solid #11283b;
+  border-radius: 4px;
+  color: #11283b;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.card-box__link:hover{
+  border: 1px solid #11283b;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: #11283b;
+  cursor: pointer;
+}
+
+.card-box__answers{
+  margin-right: 5px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  color: grey;
+  text-decoration: none;
+  padding: 7px 10px;
+}
+
+.card-box__answers:hover{
+  border: 1px solid grey;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  cursor: pointer;
+}
+
+.card-box__delete{
+  margin-right: 5px;
+  border: 1px solid red;
+  border-radius: 4px;
+  color: red;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.card-box__delete:hover{
+  border: 1px solid red;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: red;
+  cursor: pointer;
+}
+
+.card-box__edit{
+  margin-right: 5px;
+  border: 1px solid green;
+  border-radius: 4px;
+  color: green;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.card-box__edit:hover{
+  border: 1px solid green;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: green;
+  cursor: pointer;
+}
+
+.card-box__copy{
+  margin-right: 5px;
+  border: 1px solid purple;
+  border-radius: 4px;
+  color: purple;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.card-box__copy:hover{
+  border: 1px solid purple;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: purple
+  ;
+}

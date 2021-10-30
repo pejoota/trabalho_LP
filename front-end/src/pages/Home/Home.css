@@ -1,0 +1,102 @@
+.boxGeral{
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: right;
+}
+
+.caixa-graficos{
+  background-color: transparent;
+  position: absolute;
+  margin-top: 1rem;
+  margin-right: 4rem;
+  align-items: right;
+  justify-content: right;
+  display: flex;
+  overflow-x: auto;
+  min-width: 31%;
+  max-width: 31%;
+  flex-direction: row;
+  border-radius: 40px;
+}
+
+.home-graficos{
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.caixa-graficos::-webkit-scrollbar{
+  width: 0px;
+}
+
+.pagesHome {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  align-items: left;
+  justify-content: left;
+}
+
+.home-right {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #11283b;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.home-right-text {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #11283b;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.home-right p {
+  margin-top: -1rem;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.home-right-text svg {
+  color: #FFFFFF;
+}
+
+.home-right-text p {
+  color: #FFFFFF;
+}
+
+.homeForms {
+  display: flex;
+  overflow-x: auto;
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.homeForms::-webkit-scrollbar{
+  width: 0px;
+}
+
+.pagesHome h1{
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-left: 7rem;
+  font-size: 5vh;
+}

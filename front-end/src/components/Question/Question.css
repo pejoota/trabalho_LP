@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Principal {
+  width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.Second {
+  width: 100%;
+}
+
+.Title_box {
+  width: 55%;
+  height: 150px;
+  background-color: rgb(228, 228, 228);
+  margin: 2rem auto;
+  position: relative;
+  display: table;
+  border-radius: 20px;
+  border-bottom: 3px solid #242424;
+  border-left: 3px solid #242424;
+}
+
+.Title {
+  font-family: 'Roboto Slab';
+  width: 95%;
+  height: 50px;
+  margin: 2rem auto;
+  position: relative;
+  vertical-align: middle;
+}
+
+.Title_design {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid #242424;
+  font-size: 40px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.Description {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border: none;
+  outline: 0;
+  width: 100%;
+  height: 75%;
+  border-bottom: 2px solid #242424;
+  font-size: 20px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-top: 4px;
+  background-color: transparent;
+}
+
+.Question_box {
+  width: 55%;
+  min-height: 50px;
+  max-height: none;
+  background-color: rgb(228, 228, 228);
+  margin: auto;
+  position: relative;
+  border-radius: 20px;
+  border-bottom: 3px solid #242424;
+  border-left: 3px solid #242424;
+	display: flex;
+	flex-direction: column;
+}
+
+.Question {
+  width: 95%;
+  margin: 1rem;
+  position: relative;
+}
+
+.Question_design {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  border-bottom: 3px solid #242424;
+  font-size: 20px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+.Menu {
+  background-color: transparent;
+}
+
+#op_selected {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#op_multiple {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#op_short {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#op_long {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.opcao {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #2424242c;
+  font-size: 16px;
+  width: 60%;
+}
+
+.Resposta_curta {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #2424242c;
+  font-size: 16px;
+  width: 40%;
+}
+
+.Resposta_longa {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #2424242c;
+  font-size: 16px;
+  width: 100%;
+}
+
+.opcao:hover {
+  border-bottom: 2px solid #242424;
+  transition: 1s;
+}
+
+.Resposta_curta:hover {
+  border-bottom: 2px solid #242424;
+  transition: 1s;
+}
+
+.Resposta_longa:hover {
+  border-bottom: 2px solid #242424;
+  transition: 1s;
+}
+
+.Adciona_Question {
+  padding-top: 20px;
+}
+
+.create_form{
+	align-self: center;
+}
+
+.save_form{
+	align-self: center;
+	margin-top: 5em;
+}
+
+.body{
+	display: flex;
+	flex-direction: column;
+}
+
+.save_question{
+	width: 30%;
+}

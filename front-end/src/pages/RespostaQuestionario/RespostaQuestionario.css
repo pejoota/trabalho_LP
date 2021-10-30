@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+}
+  
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont,'Roboto Slab' 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.containerQuestionario{
+    font-family: 'Roboto Slab';
+    width: 100%;
+    background: linear-gradient(180deg, #11283b 0%, white 80%);
+    padding: 30px
+}
+
+.questionario {
+    width: 70%;
+    min-width: 250px;
+    height: auto;
+    min-height: 500px;
+    margin: auto;
+    padding: 15px;
+    background-color: white;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.tituloQuestionario {
+    margin-top: 20px !important;
+}
+
+.containerPerguntas{
+    height: auto;
+    padding: 20px;
+}

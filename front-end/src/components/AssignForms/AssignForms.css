@@ -1,0 +1,54 @@
+.body {
+  color: #11283b;
+  text-decoration: none;
+}
+
+.userList { 
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.dialogTitle {
+	font-size: 30px;
+	color: #11283b;
+	margin-right: 10px;
+}
+
+.closeIcon {
+  border: 1px solid red;
+  border-radius: 4px;
+  color: red;
+}
+
+.closeIcon:hover {
+  border: 1px solid red;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  background-color: red;
+  cursor: pointer;
+}
+
+.sendButton {
+	border: 1px solid #11283b;
+	border-radius: 4px;
+	color: #11283b;
+}
+
+.sendButton:hover {
+	border: 1px solid #11283b;
+	border-radius: 4px;
+	color: white;
+	text-decoration: none;
+	background-color: #11283b;
+	cursor: pointer;
+}
+
+.select_and_button {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 20px 10px 10px 10px;
+}
