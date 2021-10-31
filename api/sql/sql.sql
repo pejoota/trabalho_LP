@@ -1,3 +1,5 @@
+
+  
 DROP TABLE IF EXISTS clientes;
 
 CREATE TABLE clientes(
@@ -45,4 +47,13 @@ CREATE TABLE ingredients(
     nome                varchar(50) not null unique,
     description         varchar(180) not null,
     dataCriacao    timestamp default current_timestamp,
+);
+
+DROP TABLE IF EXISTS receitas;
+
+CREATE TABLE receitas(
+    id_receita  serial primary key,
+    nome        varchar(50) not null unique,
+    descricao   varchar(200) not null,
+    dataCriacao timestamp default current_timestamp,
 );
