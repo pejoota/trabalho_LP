@@ -10,9 +10,61 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/gorilla/mux"
 )
+
+//Busca um usuário salvo no db
+func LoginUsuario(w http.ResponseWriter, r *http.Request) {
+	corpoRequest, erro := ioutil.ReadAll(r.Body)
+	if erro != nil {
+		respostas.Erro(w, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	db, erro := config.Conectar()
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+	defer db.Close()
+
+	var cliente models.Cliente
+
+	if erro = json.Unmarshal(corpoRequest, &cliente); erro != nil {
+		respostas.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	query := "Select email, senha from clientes where email = '"+ cliente.Email+"'"
+
+	sqlStatement, err := db.Query(query)
+	if err != nil {
+        panic(err.Error())
+    }
+
+	for sqlStatement.Next() {
+
+        var aux models.Cliente
+
+        err = sqlStatement.Scan(&aux.Email, &aux.Senha)
+        if err != nil {
+			panic(err.Error())
+		}
+
+		if aux.Senha != cliente.Senha{
+			w.WriteHeader(404)
+			fmt.Println("Senha incorreta para "+cliente.Email)
+		}
+		
+		fmt.Println("User "+cliente.Email+" Found - LOGGED")
+		w.WriteHeader(200)
+		return
+    }
+
+	w.WriteHeader(404)
+	fmt.Println("User: NÃO foi encontrado")
+}
 
 //Insere usuário no db
 func CriarUsuario(w http.ResponseWriter, r *http.Request) {
@@ -49,7 +101,7 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	respostas.JSON(w, http.StatusCreated, cliente)
+	respostas.JSON(w, http.StatusOK, cliente)
 }
 
 //Busca todos os usuário salvos no db

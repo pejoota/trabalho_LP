@@ -6,7 +6,7 @@ import CircularStatic from '../../components/Progress/Progress'
 
 import './Home.css';
 
-import { getAssignPerUser, getAnswersPerUser } from '../../Utils/api';
+import { getReceitaById, getAssignPerUser, getAllForms } from '../../Utils/api';
 
 //icones
 import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
@@ -21,38 +21,39 @@ function PagesHome() {
   const [assigns, setAssigns] = useState([]);
 
   useEffect(() => {
-    getAssignPerUser(user_id)
+    getAssignPerUser()
       .then((res) => {
+        console.log(res.data);
         setAssigns(res.data);
-        console.log('ASSIGNS AQUI', assigns);
       })
       .catch((err) => {
+        console.log('############################################################');
         console.log(err);
       });
   }, []);
 
-  useEffect(() => {
-    getAnswersPerUser(user_id)
-      .then((res) => {
-        setForms(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const turnUnic = () => {
-    var vetorUnico = [];
-    assigns.map((ques) => {
-      const vetorDeIds = vetorUnico.map((q) => {
-        return q.id;
-      });
-      if (!vetorDeIds.includes(ques.id, 0)) {
-        vetorUnico = [...vetorUnico, ques];
-      }
-    });
-    return vetorUnico;
-  };
+  //useEffect(() => {
+  //  getAllForms()
+  //    .then((res) => {
+  //      setAssigns(res.data);
+  //    })
+  //    .catch((err) => {
+  //      console.log(err);
+  //    });
+  //}, []);
+  
+  //const turnUnic = () => {
+  //  var vetorUnico = [];
+  //  assigns.map((ques) => {
+  //    const vetorDeIds = vetorUnico.map((q) => {
+  //      return q.id;
+  //    });
+  //    if (!vetorDeIds.includes(ques.id, 0)) {
+  //      vetorUnico = [...vetorUnico, ques];
+  //    }
+  //  });
+  //  return vetorUnico;
+  //};
 
   return (
     <>
@@ -73,7 +74,7 @@ function PagesHome() {
               <div className="homeForms">
                 {assigns.map(function (assign) {
                   return (
-                    <HomepageCard
+                    <HomepageCardRespondido
                       className="item"
                       key={assign.form_id}
                       form_id={assign.id}
@@ -87,23 +88,17 @@ function PagesHome() {
               </div>
             )}
             <h1>Todas as Receitas:</h1>
-            {!(forms.length == 0) ? (
-              <div className="homeForms">
-                {turnUnic().map(function (form) {
+            <div className="homeForms">
+                {assigns.map(function (assign) {
                   return (
-                    <HomepageCard
+                    <HomepageCardRespondido
                       className="item"
-                      key={form.id}
-                      form_id={form.id}
+                      key={assign.form_id}
+                      form_id={assign.id}
                     />
                   );
                 })}
               </div>
-            ) : (
-              <div>
-                <p>Não há Receitas na plataforma a serem mostradas aqui :(</p>
-              </div>
-            )}
           </div>
         </div>
         <div className="caixa-graficos">

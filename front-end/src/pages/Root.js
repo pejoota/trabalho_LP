@@ -16,6 +16,7 @@ import PagesAllUsersList from './AdminPages/AllUsers';
 import RespostaQuestionario from './RespostaQuestionario/RespostaQuestionario';
 import FormRespondido from './FormRespondido/FormRespondido';
 import CreateMyForms from './Create/Create';
+import PagesReceita from './Receita/Receita'
 
 const Root = () => {
   return (
@@ -31,6 +32,7 @@ const Root = () => {
         <PrivateRoute exact path="/feedbacks/:id" component={Feedbacks} />
         <PrivateRoute exact path="/profile/:user_id" component={PagesProfile} />
         <Route exact path="/home" component={PagesHome} />
+        <Route exact path="/receita/:id" component={PagesReceita} />
         <PrivateRoute exact path="/form/:id" component={RespostaQuestionario} />
         <PrivateRoute
           exact

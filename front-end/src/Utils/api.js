@@ -20,16 +20,20 @@ export const api = axios.create({
 //);
 
 export const login = (email, password) => {
-  return api.post('/auth/login', { email, password });
+  return api.post(`/usuarios/`, { email, password });
 };
 
-export const register = (email, password, firstName, creator) => {
-  return api.post('/users', {
+export const register = (email, senha, firstName, altura, idade, peso, percgordura, percmassamagra,id_cardapio) => {
+  return api.post(`/usuarios`, {
     email: email,
-    password: password,
-    name: firstName,
-    answerer: true,
-    creator: creator,
+    senha: senha,
+    nome: firstName,
+    altura: altura,
+    idade: idade,
+    peso:peso,
+    percgordura:percgordura,
+    percmassamagra:percmassamagra,
+    id_cardapio:id_cardapio,
   });
 };
 
@@ -52,11 +56,15 @@ export const deleteForm = (id) => {
 };
 
 export const getFormById = (id) => {
-  return api.get(`/ingredients/${id}`);
+  return api.get(`/receitas/${id}`);
+};
+
+export const getReceitaById = (id) => {
+  return api.get(`/receitas/${id}`);
 };
 
 export const getUserById = (id) => {
-  return api.get(`/users/${id}`);
+  return api.get(`/receitas/${id}`);
 };
 
 export const sendFeedback = (form_id, user_id, description) => {
@@ -84,7 +92,7 @@ export const userToForm = (form_id, user_id) => {
 };
 
 export const getAssignPerUser = () => {
-  return api.get(`/ingredients/ids`);
+  return api.get(`/receitas`);
 };
 
 export const sendAnswers = (form_id, user_id, question_id, respostas) => {

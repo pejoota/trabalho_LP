@@ -9,8 +9,9 @@ import(
 	"api/src/config"
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"time"
 )
+//"strconv"
+//"time"
 
 func CreateReceita(w http.ResponseWriter, r *http.Request) {
 	//w.Write([]byte("Criando receita_id!"))
@@ -30,7 +31,7 @@ func CreateReceita(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(erro)
 	}
 
-	query := "INSERT INTO receitas (nome, descricao) VALUES ('"+receita.Nome+"','"+receita.Descricao+"') RETURNING id_receita"
+	query := "INSERT INTO receitas (nome, descricao) VALUES ('"+receita.Nome+"','"+receita.Descricao+"') RETURNING id_receita, nome, descricao, datacriacao "
 
 	sqlStatement, err := db.Query(query)
 	if err != nil {
@@ -39,14 +40,23 @@ func CreateReceita(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for sqlStatement.Next() {
-		var id string
-		err = sqlStatement.Scan(&id)
+		err = sqlStatement.Scan(&receita.Id_receita,&receita.Nome,&receita.Descricao,&receita.DataCriacao)
 		if err != nil {
 			panic(err.Error())
 		}
-		w.Write([]byte(id))
-		fmt.Println("Usuário Criado com id: ",id)
+		json.NewEncoder(w).Encode(receita)
+		fmt.Println("Usuário Criado com id: ",receita.Id_receita)
     }
+
+	for i := 0; i < len(receita.Ingredients); i++ {
+
+		db.QueryRow(
+			"INSERT INTO receitas_ingredients (id_ingredients, id_receita) VALUES ($1, $2)",
+			receita.Ingredients[i],
+			receita.Id_receita,
+		)
+		
+	}
 	defer db.Close()
 }
 
@@ -58,28 +68,24 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
         panic(err.Error())
     }
 
-	query := "SELECT * from receitas"
-
+	query := "select array_to_json(array_agg(row_to_json(receitas_alias))) from (select id_receita as \"id\",nome as \"nome\", descricao as \"descricao\", datacriacao as \"dataCriacao\" from receitas) receitas_alias"
 	sqlStatement, err := db.Query(query)
 	if err != nil {
         panic(err.Error())
     }
 
-	aux := "["
+	//Funcional
+	var aux string
 	for sqlStatement.Next() {
-		var receita models.Receita
-		err = sqlStatement.Scan(&receita.Id_receita, &receita.Nome, &receita.Descricao, &receita.DataCriacao)
-		if err != nil {
+        err = sqlStatement.Scan(&aux)
+        if err != nil {
 			panic(err.Error())
 		}
-		str := fmt.Sprintf("{\"id\":\"%d\",\"nome\":\"%s\",\"descricao\":\"%s\", \"datacriacao\":\"%s\"},", receita.Id_receita, receita.Nome, receita.Descricao, receita.DataCriacao.Format(time.RFC822))
-		aux = aux + str
-	}
-	aux = trimLastChar(aux)
-	aux = aux + "]"
+    }
 	w.Write([]byte(aux))
 
-	fmt.Println("Listando todos os ingredients")
+
+	fmt.Println("Listando todas as receitas")
 
 	defer db.Close()
 }
@@ -152,7 +158,7 @@ func UpdateReceitaById(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(200)
 
-	fmt.Println("ingredient_id:", receita.Id_receita," foi Atualizado")
+	fmt.Println("receita_id:", receita.Id_receita," foi Atualizado")
 	defer db.Close()
 }
 
@@ -181,8 +187,4 @@ func DeleteReceitaById(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("receita_id:", params["receitas_id"]," foi DELETADA")
 
 	defer db.Close()
-}
-
-func trimLastChar(s string) string {
-    return s[:len(s)-1]
 }

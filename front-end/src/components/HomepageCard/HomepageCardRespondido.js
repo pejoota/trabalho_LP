@@ -64,28 +64,13 @@ export default function HomepageCardRespondido({ form_id }) {
 
   console.log('FORME AQUI', form.user_id);
 
-  //useEffect(() => {
-  //  getUserById(form.user_id)
-  //    .then((res) => {
-  //      setName(res.data.name);
-  //      console.log('user AQUI', name);
-  //    })
-  //    .catch((err) => {
-  //      console.log(err);
-  //    });
-  //}, []);
-
   const history = useHistory();
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const openForm = () => {
-    if (form.link == null) {
-      alert('Link inválido');
-      return;
-    }
-    history.push(`/formRespondido/${form_id}/${user_id}`);
+    history.push(`/receita/${formID}`);
   };
 
   const showLink = () => {
@@ -140,7 +125,7 @@ export default function HomepageCardRespondido({ form_id }) {
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph>Description:</Typography>
-              <Typography paragraph>{form.description}</Typography>
+              <Typography paragraph>{form.descricao}</Typography>
             </CardContent>
           </Collapse>
         </Card>

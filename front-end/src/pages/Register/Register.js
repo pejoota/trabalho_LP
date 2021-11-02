@@ -35,6 +35,11 @@ function PagesRegister() {
   const [altura, setAltura] = useState('');
   const [peso, setPeso] = useState('');
   const [idade, setIdade] = useState('');
+  const [percgordura, setPercgordura] = useState('');
+  const [percmassamagra, setPercmassamagra] = useState('');
+  const [id_cardapio, setId_cardapio] = useState('');
+
+
 
 
 
@@ -51,7 +56,7 @@ function PagesRegister() {
   };
 
   const mandaProBack = () => {
-    register(email, password, firstName, value)
+    register(email, password, firstName, altura, idade, peso, percgordura, percmassamagra,id_cardapio)
       .then((resp) => {
         const { data } = resp;
         if (data) {
