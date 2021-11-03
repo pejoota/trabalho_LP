@@ -73,7 +73,7 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
 	if db == nil {
         panic(err.Error())
     }
-	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo,c.imagem FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita INNER JOIN receitas_img AS c ON c.id_receita = a.id_receita"
+	query := "SELECT a.id_receita,a.nome, a.descricao, b.ingredients, b.preparo, c.imagem FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita INNER JOIN receitas_img AS c ON c.id_receita = a.id_receita"
 	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
 	//query := "select array_to_json(array_agg(row_to_json(receitas_alias))) from (select id_receita as \"id\",nome as \"nome\", descricao as \"descricao\", datacriacao as \"dataCriacao\" from receitas) receitas_alias"
 	sqlStatement, err := db.Query(query)
@@ -82,7 +82,7 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
     }
 
 	//Funcional
-	const numero = 5
+	const numero = 4
 	var aux [5]models.Receita
 	n := 0
 	for sqlStatement.Next() {

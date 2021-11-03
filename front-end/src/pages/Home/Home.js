@@ -42,18 +42,18 @@ function PagesHome() {
   //    });
   //}, []);
   
-  //const turnUnic = () => {
-  //  var vetorUnico = [];
-  //  assigns.map((ques) => {
-  //    const vetorDeIds = vetorUnico.map((q) => {
-  //      return q.id;
-  //    });
-  //    if (!vetorDeIds.includes(ques.id, 0)) {
-  //      vetorUnico = [...vetorUnico, ques];
-  //    }
-  //  });
-  //  return vetorUnico;
-  //};
+  const turnUnic = () => {
+    var vetorUnico = [];
+    assigns.map((ques) => {
+      const vetorDeIds = vetorUnico.map((q) => {
+        return q.id;
+      });
+      if (ques.id%2 != 0) {
+        vetorUnico = [...vetorUnico, ques];
+      }
+    });
+    return vetorUnico;
+  };
 
   return (
     <>
@@ -72,7 +72,7 @@ function PagesHome() {
             <h1>Receitas que você segue:</h1>
             {!(assigns.length == 0) ? (
               <div className="homeForms">
-                {assigns.map(function (assign) {
+                {turnUnic().map(function (assign) {
                   return (
                     <HomepageCardRespondido
                       className="item"
