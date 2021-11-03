@@ -57,6 +57,13 @@ func CreateReceita(w http.ResponseWriter, r *http.Request) {
 		receita.Preparo,
 	)
 	
+	db.QueryRow(
+		"INSERT INTO receitas_img (id_receita, imagem) VALUES ($1, $2)",
+		receita.Id_receita,
+		receita.Imagem,
+	)
+
+
 }
 
 func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
@@ -66,8 +73,8 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
 	if db == nil {
         panic(err.Error())
     }
-
-	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
+	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo,c.imagem FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita INNER JOIN receitas_img AS c ON c.id_receita = a.id_receita"
+	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
 	//query := "select array_to_json(array_agg(row_to_json(receitas_alias))) from (select id_receita as \"id\",nome as \"nome\", descricao as \"descricao\", datacriacao as \"dataCriacao\" from receitas) receitas_alias"
 	sqlStatement, err := db.Query(query)
 	if err != nil {
@@ -79,7 +86,7 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
 	var aux [5]models.Receita
 	n := 0
 	for sqlStatement.Next() {
-        err = sqlStatement.Scan(&aux[n].Id_receita,&aux[n].Nome,&aux[n].Descricao,&aux[n].Ingredients,&aux[n].Preparo)
+        err = sqlStatement.Scan(&aux[n].Id_receita,&aux[n].Nome,&aux[n].Descricao,&aux[n].Ingredients,&aux[n].Preparo,&aux[n].Imagem)
         if err != nil {
 			panic(err.Error())
 		}
@@ -104,7 +111,7 @@ func GetReceitaById(w http.ResponseWriter, r *http.Request) {
 
 	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
 	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas WHERE id_receitas = "+params["receitas_id"]+" AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
-	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita WHERE a.id_receita = "+params["receitas_id"]
+	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo, c.imagem FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita INNER JOIN receitas_img AS c ON c.id_receita = a.id_receita WHERE a.id_receita = "+params["receitas_id"]
 	sqlStatement, err := db.Query(query)
 	if err != nil {
         panic(err.Error())
@@ -114,7 +121,7 @@ func GetReceitaById(w http.ResponseWriter, r *http.Request) {
 
         var receita models.Receita
 
-		err = sqlStatement.Scan(&receita.Id_receita,&receita.Nome,&receita.Descricao,&receita.Ingredients,&receita.Preparo)
+		err = sqlStatement.Scan(&receita.Id_receita,&receita.Nome,&receita.Descricao,&receita.Ingredients,&receita.Preparo,&receita.Imagem)
         if err != nil {
 			panic(err.Error())
 		}

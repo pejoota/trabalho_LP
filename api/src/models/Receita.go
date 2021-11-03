@@ -10,4 +10,5 @@ type Receita struct {
 	Preparo string			`json:"preparo,omitempty"`
 	Descricao 	string		`json:"descricao,omitempty"`
 	DataCriacao time.Time	`json:"datacriacao,omitempty"`
+	Imagem string			`json:"imagem,omitempty"`
 }

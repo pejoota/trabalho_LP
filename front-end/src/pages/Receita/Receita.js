@@ -17,6 +17,7 @@ const PagesReceita = (props) => {
     nome: '',
     preparo:'',
     ingredients:'',
+    imagem:'',
     descricao:'',
     datacriacao: ''
   };
@@ -90,6 +91,7 @@ const PagesReceita = (props) => {
   return (
     <div className="containerQuestionario">
       <div className="questionario">
+        <img src= {modo.imagem}/>
         <Typography className="tituloQuestionario" variant="h4">
           {modo.nome}
         </Typography>
