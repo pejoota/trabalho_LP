@@ -45,15 +45,16 @@ func CreateReceita(w http.ResponseWriter, r *http.Request) {
 			panic(err.Error())
 		}
 		json.NewEncoder(w).Encode(receita)
-		fmt.Println("Usuário Criado com id: ",receita.Id_receita)
+		fmt.Println("Receita Criado com id: ",receita.Id_receita)
     }
 
 	for i := 0; i < len(receita.Ingredients); i++ {
 
 		db.QueryRow(
-			"INSERT INTO receitas_ingredients (id_ingredients, id_receita) VALUES ($1, $2)",
+			"INSERT INTO receitas_ingredients (ingredients, id_receita, preparo) VALUES ($1, $2, $3)",
 			receita.Ingredients[i],
 			receita.Id_receita,
+			receita.Preparo,
 		)
 		
 	}
@@ -68,22 +69,26 @@ func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
         panic(err.Error())
     }
 
-	query := "select array_to_json(array_agg(row_to_json(receitas_alias))) from (select id_receita as \"id\",nome as \"nome\", descricao as \"descricao\", datacriacao as \"dataCriacao\" from receitas) receitas_alias"
+	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
+	//query := "select array_to_json(array_agg(row_to_json(receitas_alias))) from (select id_receita as \"id\",nome as \"nome\", descricao as \"descricao\", datacriacao as \"dataCriacao\" from receitas) receitas_alias"
 	sqlStatement, err := db.Query(query)
 	if err != nil {
         panic(err.Error())
     }
 
 	//Funcional
-	var aux string
+	const numero = 5
+	var aux [5]models.Receita
+	n := 0
 	for sqlStatement.Next() {
-        err = sqlStatement.Scan(&aux)
+        err = sqlStatement.Scan(&aux[n].Id_receita,&aux[n].Nome,&aux[n].Descricao,&aux[n].Ingredients,&aux[n].Preparo)
         if err != nil {
 			panic(err.Error())
 		}
-    }
-	w.Write([]byte(aux))
-
+		n++
+	}
+	json.NewEncoder(w).Encode(aux)
+	//w.Write([]byte(aux))
 
 	fmt.Println("Listando todas as receitas")
 
@@ -99,8 +104,9 @@ func GetReceitaById(w http.ResponseWriter, r *http.Request) {
         panic(err.Error())
     }
 
-	query := "Select id_receita, nome, descricao, datacriacao from receitas where id_receita = " + params["receitas_id"]
-
+	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
+	//query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas WHERE id_receitas = "+params["receitas_id"]+" AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita "
+	query := "SELECT a.id_receita,a.nome, a.descricao,b.ingredients, b.preparo FROM receitas AS a INNER JOIN receitas_ingredients AS b ON a.id_receita = b.id_receita WHERE a.id_receita = "+params["receitas_id"]
 	sqlStatement, err := db.Query(query)
 	if err != nil {
         panic(err.Error())
@@ -110,7 +116,7 @@ func GetReceitaById(w http.ResponseWriter, r *http.Request) {
 
         var receita models.Receita
 
-        err = sqlStatement.Scan(&receita.Id_receita, &receita.Nome, &receita.Descricao, &receita.DataCriacao)
+		err = sqlStatement.Scan(&receita.Id_receita,&receita.Nome,&receita.Descricao,&receita.Ingredients,&receita.Preparo)
         if err != nil {
 			panic(err.Error())
 		}
@@ -187,4 +193,31 @@ func DeleteReceitaById(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("receita_id:", params["receitas_id"]," foi DELETADA")
 
 	defer db.Close()
+}
+
+func confere_receitas() int{
+	db, err := config.Conectar()
+	if db == nil {
+        panic(err.Error())
+    }
+
+	//query := "SELECT id_ingredients from ingredients"
+
+
+	var query string 
+	query = "SELECT id_receita from receitas"
+
+
+	sqlStatement, err := db.Query(query)
+	if err != nil {
+        panic(err.Error())
+    }
+
+	var aux int
+	aux = 0
+	for sqlStatement.Next() {	
+		aux++
+    }
+	defer db.Close()
+	return aux
 }

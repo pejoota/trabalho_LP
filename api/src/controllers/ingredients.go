@@ -286,7 +286,12 @@ func confere_id(id string) bool{
         panic(err.Error())
     }
 
-	query := "SELECT id_ingredients from ingredients"
+	//query := "SELECT id_ingredients from ingredients"
+
+
+	var query string 
+	query = "SELECT id_ingredients from ingredients"
+
 
 	sqlStatement, err := db.Query(query)
 	if err != nil {
@@ -311,3 +316,4 @@ func confere_id(id string) bool{
 func trimLastChar(s string) string {
     return s[:len(s)-1]
 }
+

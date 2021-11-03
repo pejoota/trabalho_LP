@@ -15,6 +15,8 @@ const PagesReceita = (props) => {
   const initalValue = {
     id: 0,
     nome: '',
+    preparo:'',
+    ingredients:'',
     descricao:'',
     datacriacao: ''
   };
@@ -48,16 +50,16 @@ const PagesReceita = (props) => {
 
   const [titulo, setTitulo] = useState({
     id: 54,
-    title: 'RECEITA DO THIERRY',
+    title: 'RECEITA DO DOUGLAS',
     description: 'ISSO AI',
-    link: '',
+    link: 'DOUGLAS',
     created_at: '',
     updated_at: '',
     user_id: null,
     ingredients: [
       {
         id: 1,
-        name:'1KG CELOBA'
+        name:'1KG CEBOLA'
       },
       {
         id: 2,
@@ -65,21 +67,21 @@ const PagesReceita = (props) => {
       },
       {
         id: 3,
-        name:'1KG BOTADA DOCE'
+        name:'1KG BATATA DOCE'
 
       }],
     preparo: [
       {
         id: 1,
-        passo:'CANECA BONITA'
+        passo:'PASSO 1: CANECA BONITA'
       },
       {
         id: 2,
-        passo:'MINSTURA'
+        passo:'PASSO 2: MINSTURA'
       },
       {
         id: 3,
-        passo:'TA PTONTO SABOSTA'
+        passo:'PASSO 3: TA PRONTO O SORVETINHO'
 
       }],
   })
@@ -89,20 +91,15 @@ const PagesReceita = (props) => {
     <div className="containerQuestionario">
       <div className="questionario">
         <Typography className="tituloQuestionario" variant="h4">
-          {titulo.title}
+          {modo.nome}
         </Typography>
-        <Typography variant="inherit">Criador: {titulo.title}</Typography>
+        <Typography variant="inherit">Descrição: {modo.descricao}</Typography>
         <br />
         <div className="containerPerguntas">
-          <div>INGREDIENTES</div>
-          {titulo.ingredients.map((ingrediente) => (
-            <>
-              <div>{ingrediente.name}</div>
-            </>
-            
-          ))}
-          <div className=''>MODO DE PREPARO</div>
-            <div>{modo.descricao}</div>
+          <div><br/>INGREDIENTES<br/></div>
+          <div>{modo.ingredients}</div>
+          <div className=''><br/>MODO DE PREPARO<br/></div>
+          <div> {modo.preparo}</div>
           </div>
         <Button
           variant="contained"
