@@ -1,12 +1,13 @@
 # trabalho_LP
 
-##Kanban do trabalho: 
+## Kanban do trabalho: 
  - https://trello.com/invite/b/9APV0Qaj/09c1a0e22ef7e1a060120f6f6c1bcceb/trabalho-lp
  - Local onde o trabalho foi planejado e onde as tarefas foram divididas e podem ser acompanhadas
 
+## Link para apresentação do trabalho:
+ - https://youtu.be/PqMG9vf00L8
+ 
 ## CRUD em Golang para utilização de paralelismo
-
-  
 
 ### Integrantes:
 
