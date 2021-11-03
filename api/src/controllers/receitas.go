@@ -48,17 +48,15 @@ func CreateReceita(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Receita Criado com id: ",receita.Id_receita)
     }
 
-	for i := 0; i < len(receita.Ingredients); i++ {
+	
 
-		db.QueryRow(
-			"INSERT INTO receitas_ingredients (ingredients, id_receita, preparo) VALUES ($1, $2, $3)",
-			receita.Ingredients[i],
-			receita.Id_receita,
-			receita.Preparo,
-		)
-		
-	}
-	defer db.Close()
+	db.QueryRow(
+		"INSERT INTO receitas_ingredients (ingredients, id_receita, preparo) VALUES ($1, $2, $3)",
+		receita.Ingredients,
+		receita.Id_receita,
+		receita.Preparo,
+	)
+	
 }
 
 func GetAllReceitas(w http.ResponseWriter, r *http.Request) {
