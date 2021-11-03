@@ -6,6 +6,9 @@
 
 ## Link para apresentação do trabalho:
  - https://youtu.be/PqMG9vf00L8
+
+## Link para os SLIDES da apresentação
+ - https://prezi.com/view/9kQgeWWv4orEyeF46qtE/
  
 ## CRUD em Golang para utilização de paralelismo
 
